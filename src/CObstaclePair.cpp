@@ -64,10 +64,14 @@ CObstaclePair::CObstaclePair(pcl::PointCloud<pcl::PointXYZI>::Ptr ori_xyz, pcl::
         pcl::PointCloud<PointSrc>::Ptr beam_laserPointCloud_src(new pcl::PointCloud<PointSrc>);
         for(unsigned jface_count = 0 ; jface_count < numFace ; jface_count++)
         {
-            beam_laserPointCloud->points.push_back(ori_xyz->points[getIdxVeloDyne(ibeam_count,jface_count)]);
-            beam_laserPointCloud_src->points.push_back(ori_src->points[getIdxVeloDyne(ibeam_count,jface_count)]);
+//            beam_laserPointCloud->points.push_back(ori_xyz->points[getIdxVeloDyne(ibeam_count,jface_count)]);
+//            beam_laserPointCloud_src->points.push_back(ori_src->points[getIdxVeloDyne(ibeam_count,jface_count)]);
+
 //          beam_laserPointCloud->points.push_back(ori_xyz->points[getIdxRslidar(ibeam_count,jface_count)]);
 //          beam_laserPointCloud_src->points.push_back(ori_src->points[getIdxRslidar(ibeam_count,jface_count)]);
+
+            beam_laserPointCloud->points.push_back(ori_xyz->points[getIdxRfans(ibeam_count,jface_count,numFace)]);
+            beam_laserPointCloud_src->points.push_back(ori_src->points[getIdxRfans(ibeam_count,jface_count,numFace)]);
         }
         laserPointCloud[ibeam_count] = beam_laserPointCloud;
         laserPointCloud_src[ibeam_count] = beam_laserPointCloud_src;

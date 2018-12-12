@@ -14,6 +14,8 @@
 #define CONSTANT_FIGURERESERVE 10
 #define RFANS_LINE 32
 
+extern int off_idx[4];
+
 struct PointSrc
 {
     double radios;
@@ -29,6 +31,13 @@ inline int getIdxVeloDyne(int idx_beam,int idx_sweep)
 inline int getIdxRslidar(int idx_beam,int idx_sweep)
 {
   int idx=idx_beam>=8?23-idx_beam:idx_beam;
+  return idx_sweep*RFANS_LINE+idx;
+}
+
+inline int getIdxRfans(int idx_beam,int idx_sweep,int num_sweep)
+{
+  int idx=idx_sweep+off_idx[idx_beam%4];
+  if(idx>num_sweep) idx-=num_sweep;
   return idx_sweep*RFANS_LINE+idx;
 }
 
